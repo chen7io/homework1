@@ -1,29 +1,171 @@
-sum_han=0;sum_ccm=0;sum_han2=0;sum_ccm2=0
-x1<-subset(`201801_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count"))
-x1<-rbind(x1,subset(`201802_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201803_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201804_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),
-      subset(`201805_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201806_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201807_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201808_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201809_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),
-      subset(`201810_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201811_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201812_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201901_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")))
-sum_han<-sum(as.numeric(x1$LIKE_COUNT))
-sum_han2<-sum(as.numeric(x1$Comment_Count))
-x2<-subset(`201801_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count"))
-x2<-rbind(x2,subset(`201802_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201802_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201803_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201804_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count"))
-          ,subset(`201805_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201806_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201807_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201808_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201809_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count"))
-          ,subset(`201810_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201811_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201812_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201901_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")))
-sum_ccm<-sum(as.numeric(x2$LIKE_COUNT))
-sum_ccm2<-sum(as.numeric(x2$Comment_Count))
-nrow(x1)
-x1['person']='han'
-x2['person']='ccm'
-new_data1<-matrix(c(sum_ccm,sum_ccm2,sum_han,sum_han2),nrow=2,ncol=2)
-new_data1<-prop.table(new_data1)
-rownames(new_data1)<-c("han","ccm")
-colnames(new_data1)<-c("like","comment")
+#1.台北市長聲量比較圖
+#初始化變數
+counta1=0
+counta2=0
+counta3=0
+counta4=0
+counta5=0
+counta6=0
+counta7=0
+counta8=0
+counta9=0
+counta10=0
+counta11=0
+counta12=0
 
-# Create the input vectors.
-colors = c("orange","brown")
-people<-c("han","ccm")
-types<-c("like","comment")
-# Create the bar chart
-barplot(new_data1,main="comparison",names.arg = people,col = colors,ylab = "count")
-# Add the legend to the chart
-legend("topleft", types, cex = 0.8, fill = colors)
+countb1=0
+countb2=0
+countb3=0
+countb4=0
+countb5=0
+countb6=0
+countb7=0
+countb8=0
+countb9=0
+countb10=0
+countb11=0
+countb12=0
+
+countc1=0
+countc2=0
+countc3=0
+countc4=0
+countc5=0
+countc6=0
+countc7=0
+countc8=0
+countc9=0
+countc10=0
+countc11=0
+countc12=0
+
+#尋找2018中提及柯文哲的文章內容
+for (i in grep("柯",`201801_data`$Message)) {
+  counta1=counta1+1
+}
+for (i in grep("柯",`201802_data`$Message)) {
+  counta2=counta2+1
+}
+for (i in grep("柯",`201803_data`$Message)) {
+  counta3=counta3+1
+}
+for (i in grep("柯",`201804_data`$Message)) {
+  counta4=counta4+1
+}
+for (i in grep("柯",`201805_data`$Message)) {
+  counta5=counta5+1
+}
+for (i in grep("柯",`201806_data`$Message)) {
+  counta6=counta6+1
+}
+for (i in grep("柯",`201807_data`$Message)) {
+  counta7=counta7+1
+}
+for (i in grep("柯",`201808_data`$Message)) {
+  counta8=counta8+1
+}
+for (i in grep("柯",`201809_data`$Message)) {
+  counta9=counta9+1
+}
+for (i in grep("柯",`201810_data`$Message)) {
+  counta10=counta10+1
+}
+for (i in grep("柯",`201811_data`$Message)) {
+  counta11=counta11+1
+}
+for (i in grep("柯",`201812_data`$Message)) {
+  counta12=counta12+1
+}
+kp<-c(counta1,counta2,counta3,counta4,counta5,counta6,counta7,counta8,counta9,counta10,counta11,counta12)
+kp
+#尋找2018中提及姚文智的內容
+for (i in grep("姚",`201801_data`$Message)) {
+  countb1=countb1+1
+}
+for (i in grep("姚",`201802_data`$Message)) {
+  countb2=countb2+1
+}
+for (i in grep("姚",`201803_data`$Message)) {
+  countb3=countb3+1
+}
+for (i in grep("姚",`201804_data`$Message)) {
+  countb4=countb4+1
+}
+for (i in grep("姚",`201805_data`$Message)) {
+  countb5=countb5+1
+}
+for (i in grep("姚",`201806_data`$Message)) {
+  countb6=countb6+1
+}
+for (i in grep("姚",`201807_data`$Message)) {
+  countb7=countb7+1
+}
+for (i in grep("姚",`201808_data`$Message)) {
+  countb8=countb8+1
+}
+for (i in grep("姚",`201809_data`$Message)) {
+  countb9=countb9+1
+}
+for (i in grep("姚",`201810_data`$Message)) {
+  countb10=countb10+1
+}
+for (i in grep("姚",`201811_data`$Message)) {
+  countb11=countb11+1
+}
+for (i in grep("姚",`201812_data`$Message)) {
+  countb12=countb12+1
+}
+#尋找2018中提及丁守中的內容
+for (i in grep("丁",`201801_data`$Message)) {
+  countc1=countc1+1
+}
+
+for (i in grep("丁",`201802_data`$Message)) {
+  countc2=countc2+1
+}
+for (i in grep("丁",`201803_data`$Message)) {
+  countc3=countc3+1
+}
+for (i in grep("丁",`201804_data`$Message)) {
+  countc4=countc4+1
+}
+for (i in grep("丁",`201805_data`$Message)) {
+  countc5=countc5+1
+}
+for (i in grep("丁",`201806_data`$Message)) {
+  countc6=countc6+1
+}
+for (i in grep("丁",`201807_data`$Message)) {
+  countc7=countc7+1
+}
+for (i in grep("丁",`201808_data`$Message)) {
+  countc8=countc8+1
+}
+for (i in grep("丁",`201809_data`$Message)) {
+  countc9=countc9+1
+}
+for (i in grep("丁",`201810_data`$Message)) {
+  countc10=countc10+1
+}
+for (i in grep("丁",`201811_data`$Message)) {
+  countc11=countc11+1
+}
+for (i in grep("丁",`201812_data`$Message)) {
+  countc12=countc12+1
+}
+dd<-c(countc1,countc2,countc3,countc4,countc5,countc6,countc7,countc8,countc9,countc10,countc11,countc12)
+uu<-c(countb1,countb2,countb3,countb4,countb5,countb6,countb7,countb8,countb9,countb10,countb11,countb12)
+
+Month<-c(1:12)
+tot<-c(kp,uu,dd)
+Candidate<-c("kp","kp","kp","kp","kp","kp","kp","kp","kp","kp","kp","kp","uu","uu","uu","uu","uu","uu","uu","uu","uu","uu","uu","uu","dd","dd","dd","dd","dd","dd","dd","dd","dd","dd","dd","dd")
+#給定一個dataframe
+testfor1<- data.frame( 
+  Month,Candidate,tot
+) 
+print(testfor1) 
+par(family = "PingFangTC-Medium") #嘗試指定中文字型（但失敗）
+system("defaults write org.R-project.R force.LANG zh_TW.UTF-8")#嘗試使用中文第二次，失敗第二次
+#畫折線圖，使用ggplot2 package，放棄使用中文
+ggplot(testfor1,aes(x=Month,y=tot,color=Candidate,group=Candidate))+geom_line()+ggtitle("Taipei")+xlab("Month")+ylab("count")+geom_point(size = 1)+
+ xlim(1,12)
