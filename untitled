@@ -1,0 +1,29 @@
+sum_han=0;sum_ccm=0;sum_han2=0;sum_ccm2=0
+x1<-subset(`201801_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count"))
+x1<-rbind(x1,subset(`201802_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201803_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201804_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),
+      subset(`201805_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201806_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201807_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201808_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201809_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),
+      subset(`201810_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201811_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201812_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")),subset(`201901_data`,Page_Name=="韓國瑜",select =c("LIKE_COUNT","Comment_Count")))
+sum_han<-sum(as.numeric(x1$LIKE_COUNT))
+sum_han2<-sum(as.numeric(x1$Comment_Count))
+x2<-subset(`201801_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count"))
+x2<-rbind(x2,subset(`201802_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201802_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201803_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201804_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count"))
+          ,subset(`201805_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201806_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201807_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201808_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201809_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count"))
+          ,subset(`201810_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201811_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201812_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")),subset(`201901_data`,Page_Name=="陳其邁 Chen Chi-Mai",select =c("LIKE_COUNT","Comment_Count")))
+sum_ccm<-sum(as.numeric(x2$LIKE_COUNT))
+sum_ccm2<-sum(as.numeric(x2$Comment_Count))
+nrow(x1)
+x1['person']='han'
+x2['person']='ccm'
+new_data1<-matrix(c(sum_ccm,sum_ccm2,sum_han,sum_han2),nrow=2,ncol=2)
+new_data1<-prop.table(new_data1)
+rownames(new_data1)<-c("han","ccm")
+colnames(new_data1)<-c("like","comment")
+
+# Create the input vectors.
+colors = c("orange","brown")
+people<-c("han","ccm")
+types<-c("like","comment")
+# Create the bar chart
+barplot(new_data1,main="comparison",names.arg = people,col = colors,ylab = "count")
+# Add the legend to the chart
+legend("topleft", types, cex = 0.8, fill = colors)
